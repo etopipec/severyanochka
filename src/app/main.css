@@ -1,2 +1,38 @@
 @import './base.css';
 
+:root {
+  /* colors */
+  --main-background: #F4F4F2;
+  --main-on-background: #291E0F;
+  --main-surface: #FFF;
+  --main-on-surface: #414141;
+  --main-primary: #F63;
+  --main-on-primary: #FFF;
+  --main-secondary: #70C05B;
+  --main-on-secondary: #FFF;
+  --grayscale-lightest: #F3F2F1;
+  --grayscale-light: #BFBFBF;
+  --grayscale-hard: #8F8F8F;
+  --grayscale-hardest: #606060;
+  --pallete-success: #008C49;
+  --pallete-info: #1CB9FC;
+  --pallete-warning: #FCA21C;
+  --pallete-error: #D80000;
+
+  /* shadows */
+  --shadow-default-xs: 1px 2px 4px 0px rgba(0, 0, 0, 0.10);
+  --shadow-default-s: 2px 4px 8px 0px rgba(0, 0, 0, 0.10);
+  --shadow-default-m: 4px 8px 16px 0px rgba(0, 0, 0, 0.10);
+  --shadow-default-l: 8px 16px 32px 0px rgba(0, 0, 0, 0.10);
+  --shadow-default-xl: 16px 32px 64px 0px rgba(0, 0, 0, 0.10);
+  --shadow-primary-xs: 1px 2px 4px 0px rgba(255, 102, 51, 0.20);
+  --shadow-primary-s: 2px 4px 8px 0px rgba(255, 102, 51, 0.20);
+  --shadow-primary-m: 4px 8px 16px 0px rgba(255, 102, 51, 0.20);
+  --shadow-primary-l: 8px 16px 32px 0px rgba(255, 102, 51, 0.20);
+  --shadow-primary-xl: 16px 32px 64px 0px rgba(255, 102, 51, 0.20);
+  --shadow-secondary-xs: 1px 2px 4px 0px rgba(112, 192, 91, 0.20);
+  --shadow-secondary-s: 2px 4px 8px 0px rgba(112, 192, 91, 0.20);
+  --shadow-secondary-m: 4px 8px 16px 0px rgba(112, 192, 91, 0.20);
+  --shadow-secondary-l: 8px 16px 32px 0px rgba(112, 192, 91, 0.20);
+  --shadow-secondary-xl: 16px 32px 64px 0px rgba(112, 192, 91, 0.20);
+}
