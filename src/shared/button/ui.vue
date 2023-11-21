@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useSlots } from 'vue';
 import { Typography } from '@/shared/typography';
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
   disabled?: boolean;
 }
 
+const slots = useSlots();
 const props = defineProps<Props>();
 const {
   color = 'primary',
@@ -22,7 +24,7 @@ const classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${
 <template>
   <button :class="classes" :disabled="disabled">
     <slot name="leftIcon"></slot>
-    <Typography class="button__text" tagName="p" size="s"><slot></slot></Typography>
+    <Typography v-if="slots.default" class="button__text" tagName="p" size="s"><slot></slot></Typography>
   </button>
 </template>
 
@@ -49,5 +51,14 @@ const classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${
 .button.color_secondary {
   background-color: var(--main-secondary);
   color: var(--main-on-secondary);
+}
+
+.button.decoration_none {
+  background-color: unset;
+  border-color: unset;
+}
+
+.button.decoration_none:deep(path) {
+  fill: var(--main-on-surface);
 }
 </style>
