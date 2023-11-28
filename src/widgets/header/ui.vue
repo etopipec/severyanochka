@@ -1,13 +1,19 @@
 <script lang="ts" setup>
 import { reactive } from 'vue';
+import { storeToRefs } from 'pinia'
+import { Navigation } from '@/features/header/navigation';
+import { UserMenu } from '@/features/header/user-menu';
+import { usePersonStore } from '@/entities/person';
 import { Container } from '@/shared/container';
 import { Logo } from '@/shared/logo';
 import { Button } from '@/shared/button';
 import { Icon } from '@/shared/icon';
 import { Field } from '@/shared/field';
-import { Navigation } from '@/features/header/navigation';
-import { UserMenu } from '@/features/header/user-menu';
 import avatarIMG from '@/assets/avatar.png';
+
+const personStore = usePersonStore();
+const { person, isAuth } = storeToRefs(personStore);
+const { setIsAuth } = personStore;
 
 const navItems = reactive([
   { label: 'Избранное', icon: 'favorite', count: 0, link: '/favorites' },
@@ -17,12 +23,18 @@ const navItems = reactive([
 
 const userMenu = reactive({
   avatar: avatarIMG,
-  name: 'Алексей',
-  menu: [],
+  name: person.value.name,
+  menu: [
+    { label: 'Профиль', link: '/profile' },
+    { label: 'Выйти', action: 'logout' },
+  ],
 });
 
 const onChangeSearch = (value: string) => console.log(value); 
 const onSearch = () => console.log('SEND TO SIRVIR');
+const login = () => {
+  setIsAuth(true);
+};
 </script>
 
 <template>
@@ -55,7 +67,13 @@ const onSearch = () => console.log('SEND TO SIRVIR');
         <Navigation :data="navItems" />
       </div>
       <div class="header__user-menu">
-        <UserMenu :data="userMenu" />
+        <UserMenu v-if="isAuth" :data="userMenu" />
+        <Button v-else class="header__login-btn" @click="login">
+          <template v-slot:rightIcon>
+            <Icon type="login" />
+          </template>
+          Войти
+        </Button>
       </div>
     </Container>
   </header>
@@ -91,6 +109,17 @@ const onSearch = () => console.log('SEND TO SIRVIR');
 }
 
 .header__user-menu {
+  position: relative;
   width: 217px;
+}
+
+.header__user-menu:deep(.user-menu) {
+  position: absolute;
+  top: -28px;
+  width: 100%;
+}
+
+.header__login-btn {
+  width: 157px;
 }
 </style>

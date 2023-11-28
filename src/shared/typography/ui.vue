@@ -20,7 +20,8 @@ const props = defineProps<Props>();
 <style scoped>
 .typography {
   font-style: normal;
-  line-height: 150%; 
+  line-height: 150%;
+  color: var(--main-on-surface);
 }
 
 .bold { font-weight: 700; }

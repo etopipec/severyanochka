@@ -43,7 +43,6 @@ const { data } = defineProps<Props>();
   align-items: center;
   grid-gap: 8px;
   text-decoration: none;
-  color: var(--main-on-surface);
 }
 
 .item__count {
