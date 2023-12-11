@@ -5,6 +5,7 @@ import { Navigation } from '@/features/header/navigation';
 import { UserMenu } from '@/features/header/user-menu';
 import { DropdownMenu } from '@/features/header/dropdown-menu';
 import { usePersonStore } from '@/entities/person';
+import { useScreenStore } from '@/entities/screen';
 import { Container } from '@/shared/container';
 import { Logo } from '@/shared/logo';
 import { Button } from '@/shared/button';
@@ -12,6 +13,8 @@ import { Icon } from '@/shared/icon';
 import { Field } from '@/shared/field';
 import avatarIMG from '@/assets/avatar.png';
 
+const screenStore = useScreenStore();
+const { platform } = storeToRefs(screenStore);
 const personStore = usePersonStore();
 const { person, isAuth } = storeToRefs(personStore);
 const { setIsAuth } = personStore;
@@ -43,7 +46,7 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
   <header class="header">
     <div class="header__content">
       <Container class="header__container">
-        <Logo orientation="horizontal" bgColor="white" colorful withText />
+        <Logo orientation="horizontal" bgColor="white" colorful :withText="platform === 'desktop'" />
         <div class="header__catalog">
           <Button color="secondary" @mouseenter="toggleDropdownVisibility">
             <template v-slot:leftIcon>
@@ -131,5 +134,46 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
 
 .header__login-btn {
   width: 157px;
+}
+
+@media screen and (max-width: 1207px) {
+  .header__container {
+    grid-gap: 20px;
+  }
+
+  .header__catalog {
+    width: unset;
+    margin-left: unset;
+  }
+
+  .header__login-btn {
+    width: max-content;
+  }
+
+  .header__login-btn:deep(.typography),
+  .header__catalog:deep(.typography) {
+    display: none;
+  }
+
+  .header__catalog:deep(.button) {
+    width: max-content;
+  }
+
+  .header__search {
+    width: max-content;
+    margin-left: unset;
+  }
+
+  .header__user-menu {
+    width: unset;
+  }
+
+  .header__user-menu:deep(.user-menu) {
+    width: max-content;
+  }
+
+  .header__navigation {
+    margin: 0;
+  }
 }
 </style>
