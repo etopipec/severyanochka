@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
-import { storeToRefs } from 'pinia'
+import { storeToRefs } from 'pinia';
+import { RouterLink } from 'vue-router';
 import { Navigation } from '@/features/header/navigation';
 import { UserMenu } from '@/features/header/user-menu';
 import { DropdownMenu } from '@/features/header/dropdown-menu';
@@ -11,7 +12,6 @@ import { Logo } from '@/shared/logo';
 import { Button } from '@/shared/button';
 import { Icon } from '@/shared/icon';
 import { Field } from '@/shared/field';
-import avatarIMG from '@/assets/avatar.png';
 
 const screenStore = useScreenStore();
 const { platform } = storeToRefs(screenStore);
@@ -26,7 +26,7 @@ const navItems = reactive([
 ]);
 
 const userMenu = reactive({
-  avatar: avatarIMG,
+  avatar: person.value.avatar,
   name: person.value.name,
   menu: [
     { label: 'Профиль', link: '/profile' },
@@ -34,7 +34,7 @@ const userMenu = reactive({
   ],
 });
 
-const dropdownIsHidden = ref<boolean>(true);
+const dropdownIsHidden = ref(true);
 
 const onChangeSearch = (value: string) => console.log(value); 
 const onSearch = () => console.log('SEND TO SIRVIR');
@@ -46,7 +46,11 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
   <header class="header">
     <div class="header__content">
       <Container class="header__container">
-        <Logo orientation="horizontal" bgColor="white" colorful :withText="platform === 'desktop'" />
+        <div class="header__logo">
+          <RouterLink to="/">
+            <Logo  orientation="horizontal" bgColor="white" colorful :withText="platform === 'desktop'" />
+          </RouterLink>
+        </div>
         <div class="header__catalog">
           <Button color="secondary" @mouseenter="toggleDropdownVisibility">
             <template v-slot:leftIcon>
@@ -174,6 +178,27 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
 
   .header__navigation {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .header__navigation,
+  .header__user-menu,
+  .header__catalog {
+    display: none;
+  }
+
+  .header__logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .header__logo:deep(svg) {
+    width: 39px;
+  }
+
+  .header__search {
+    width: 100%;
   }
 }
 </style>
