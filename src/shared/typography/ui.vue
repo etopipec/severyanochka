@@ -38,7 +38,7 @@ const props = defineProps<Props>();
 .tag_h4 { font-size: 24px; }
 .tag_h5 { font-size: 18px; }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .size_xs { font-size: 8px; }
   .size_s { font-size: 12px; }
   .size_m { font-size: 14px; }

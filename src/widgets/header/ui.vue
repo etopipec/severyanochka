@@ -48,7 +48,7 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
       <Container class="header__container">
         <div class="header__logo">
           <RouterLink to="/">
-            <Logo  orientation="horizontal" bgColor="white" colorful :withText="platform === 'desktop'" />
+            <Logo orientation="horizontal" bgColor="white" colorful :withText="platform === 'desktop'" />
           </RouterLink>
         </div>
         <div class="header__catalog">
@@ -164,12 +164,11 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
   }
 
   .header__search {
-    width: max-content;
     margin-left: unset;
   }
 
   .header__user-menu {
-    width: unset;
+    width: 56px;
   }
 
   .header__user-menu:deep(.user-menu) {
