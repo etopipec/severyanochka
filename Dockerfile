@@ -1,5 +1,12 @@
-FROM node:lts-alpine as build-stage
+FROM node:16.18-alpine3.15 as build-stage
+
 WORKDIR /app
+
+RUN apk update \
+ && apk add git \
+ && git clone https://github.com/vadimkaKharitonenko/severyanochka.git . \
+ && git pull
+
 COPY package*.json ./
 RUN npm install
 COPY . .
