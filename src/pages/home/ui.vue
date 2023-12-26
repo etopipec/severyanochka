@@ -8,6 +8,6 @@ import { Content } from '@/shared/content';
 <template>
   <Header />
   <BottomTabNavigator />
-  <Content />
+  <Content>DOCKER TEST</Content>
   <Footer />
 </template>
