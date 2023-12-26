@@ -65,7 +65,7 @@ const socials = reactive([
   height: 126px;
   padding: 24px 0;
   background-color: var(--main-footer);
-  background-image: url('./footer-bg-pattern.png');
+  background-image: url('/footer-bg-pattern.png');
 }
 
 .footer__content {
