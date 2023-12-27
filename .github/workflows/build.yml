@@ -1,0 +1,15 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-only:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install deps
+        run: npm install
+      - name: Build only
+        run: npm run build-only
