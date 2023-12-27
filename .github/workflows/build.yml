@@ -13,3 +13,11 @@ jobs:
         run: npm install
       - name: Build only
         run: npm run build-only
+      - name: Clear cache
+        run: docker builder prune -a
+      - name: Build docker image
+        run: docker build -t severyanochka .
+      - name: Stop current fronted container
+        run: docker stop frontend
+      - name: Run container
+        run: docker run -it -p 8080:80 --rm -d --name frontend severyanochka
