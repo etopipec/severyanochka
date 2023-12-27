@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   build-only:
-    runs-on: self-hosted
+    runs-on: severyanochka-label
     steps:
       - name: Checkout
         uses: actions/checkout@v3
