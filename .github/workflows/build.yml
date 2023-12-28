@@ -16,6 +16,7 @@ jobs:
   deploy:
     needs: [build-only]
     runs-on: severyanochka-label
+    steps:
       - name: Clear cache
         run: docker builder prune -a
       - name: Build docker image
