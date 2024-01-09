@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { RouterLink } from 'vue-router';
 import { Typography } from '@/shared/typography';
-import { Icon } from '@/shared/icon';
+import { Icon, type IconType } from '@/shared/icon';
 
 interface Props {
   data: {
     label: string;
-    icon: string;
+    icon: IconType;
     count: number;
     link: string;
   }[]

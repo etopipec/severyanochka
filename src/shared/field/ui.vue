@@ -2,8 +2,6 @@
 import { useSlots } from 'vue';
 
 interface Props {
-  onChange: () => string;
-  onSubmit: () => void;
   disabled?: boolean;
   size?: 'm' | 'l';
   placeholder?: string;
@@ -11,7 +9,14 @@ interface Props {
 
 const slots = useSlots();
 const props = defineProps<Props>();
-const { disabled = false, size = 'm', placeholder = '', onSubmit = () => {} } = props;
+const emit = defineEmits(['onChange', 'onSubmit']);
+
+const { disabled = false, size = 'm', placeholder = '' } = props;
+const onInput = (eventTarget: EventTarget | null) => {
+  if (!eventTarget) return;
+  const value = (eventTarget as HTMLInputElement).value;
+  emit('onChange', value);
+};
 </script>
 
 <template>
@@ -24,18 +29,18 @@ const { disabled = false, size = 'm', placeholder = '', onSubmit = () => {} } = 
   ]">
     <slot name="label"></slot>
     <div class="field__container">
-      <div v-if="slots.leftIcon" class="field__left-icon" @click="onSubmit">
+      <div v-if="slots.leftIcon" class="field__left-icon" @click="$emit('onSubmit')">
         <slot name="leftIcon"></slot>
       </div>
       <input
         class="field__input"
         type="text"
-        @input="(input) => onChange(input.target.value)"
-        @keyup.enter="onSubmit"
+        @input="onInput($event.target)"
+        @keyup.enter="$emit('onSubmit')"
         :placeholder="placeholder"
         :disabled="disabled"
       />
-      <div v-if="slots.rightIcon" class="field__right-icon" @click="onSubmit">
+      <div v-if="slots.rightIcon" class="field__right-icon" @click="$emit('onSubmit')">
         <slot name="rightIcon"></slot>
       </div>
     </div>

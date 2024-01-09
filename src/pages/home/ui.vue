@@ -8,6 +8,6 @@ import { Content } from '@/shared/content';
 <template>
   <Header />
   <BottomTabNavigator />
-  <Content />
+  <Content>update ci/cd</Content>
   <Footer />
 </template>

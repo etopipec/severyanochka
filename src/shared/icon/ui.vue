@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import { type IconType } from './types';
+
 interface Props {
-  type: 'menu' | 'favorite' | 'orders' | 'cart' | 'chevron' | 'insta' | 'vk' | 'fb' | 'ok' | 'phone',
+  type: IconType,
 }
 
 const props = defineProps<Props>();

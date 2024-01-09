@@ -4,17 +4,21 @@ on:
     branches:
       - master
 jobs:
-  build-only:
+  test:
     runs-on: severyanochka-label
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install deps
-        run: npm install
-      - name: Build only
-        run: npm run build-only
+      uses: actions/checkout@v3
+      - name: Run unit tests
+      run: npm run test:unit
+  type-check:
+    needs: [test]
+    runs-on: severyanochka-label
+    steps:
+      - name: Run type check
+      run: npm run type-check
   deploy:
-    needs: [build-only]
+    needs: [type-check]
     runs-on: severyanochka-label
     steps:
       - name: Clear cache

@@ -10,7 +10,7 @@ import { useScreenStore } from '@/entities/screen';
 import { Container } from '@/shared/container';
 import { Logo } from '@/shared/logo';
 import { Button } from '@/shared/button';
-import { Icon } from '@/shared/icon';
+import { Icon, type IconType } from '@/shared/icon';
 import { Field } from '@/shared/field';
 
 const screenStore = useScreenStore();
@@ -19,7 +19,7 @@ const personStore = usePersonStore();
 const { person, isAuth } = storeToRefs(personStore);
 const { setIsAuth } = personStore;
 
-const navItems = reactive([
+const navItems = reactive<{ label: string; icon: IconType; count: number; link: string; }[]>([
   { label: 'Избранное', icon: 'favorite', count: 0, link: '/favorites' },
   { label: 'Заказы', icon: 'orders', count: 0, link: '/orders' },
   { label: 'Корзина', icon: 'cart', count: 1, link: '/cart' },
@@ -62,8 +62,8 @@ const toggleDropdownVisibility = () => dropdownIsHidden.value = !dropdownIsHidde
         <div class="header__search">
           <Field
             placeholder="Найти товар"
-            :onChange="onChangeSearch"
-            :onSubmit="onSearch"
+            @onChange="onChangeSearch"
+            @onSubmit="onSearch"
           >
             <template #rightIcon>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

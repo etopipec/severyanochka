@@ -5,13 +5,14 @@ import { Navigation } from '@/features/header/navigation';
 import { UserMenu } from '@/features/header/user-menu';
 import { usePersonStore } from '@/entities/person';
 import { Button } from '@/shared/button';
-import { Icon } from '@/shared/icon';
+import { Icon, type IconType } from '@/shared/icon';
 import { Container } from '@/shared/container';
 
 const personStore = usePersonStore();
 const { person, isAuth } = storeToRefs(personStore);
+const { setIsAuth } = personStore;
 
-const navItems = reactive([
+const navItems = reactive<{ label: string; icon: IconType, count: number; link: string; }[]>([
   { label: 'Каталог', icon: 'menu', count: 0, link: '/catalog' },
   { label: 'Избранное', icon: 'favorite', count: 0, link: '/favorites' },
   { label: 'Заказы', icon: 'orders', count: 0, link: '/orders' },
@@ -26,6 +27,8 @@ const userMenu = reactive({
     { label: 'Выйти', action: 'logout' },
   ],
 });
+
+const login = () => setIsAuth(true);
 </script>
 
 <template>

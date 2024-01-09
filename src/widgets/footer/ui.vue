@@ -3,7 +3,7 @@ import { reactive } from 'vue';
 import { Container } from '@/shared/container';
 import { Logo } from '@/shared/logo';
 import { Typography } from '@/shared/typography';
-import { Icon } from '@/shared/icon';
+import { Icon, type IconType } from '@/shared/icon';
 
 const links = reactive([
   { label: 'О компании', href: '/' },
@@ -13,7 +13,7 @@ const links = reactive([
   { label: 'Политика обработки персональных данных', href: '/' },
 ]);
 
-const socials = reactive([
+const socials = reactive<{ icon: IconType, href: string }[]>([
   { icon: 'insta', href: '/' },
   { icon: 'vk', href: '/' },
   { icon: 'fb', href: '/' },

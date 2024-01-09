@@ -11,7 +11,7 @@ interface Props {
   data: {
     avatar: string;
     name: string;
-    menu: { label: string; link: string; action: string }[];
+    menu: { label: string; link?: string; action?: string }[];
   }
 }
 
@@ -26,7 +26,8 @@ const toggleMenu = () => {
   isOpen.value = !isOpen.value;
 };
 
-const onClickItem = (action: string) => {
+const onClickItem = (action?: string) => {
+  if (!action) return;
   if (action === 'logout') {
     setIsAuth(false);
   }
