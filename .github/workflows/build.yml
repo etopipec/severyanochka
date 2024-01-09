@@ -4,19 +4,23 @@ on:
     branches:
       - master
 jobs:
-  test:
+  checkout:
     runs-on: severyanochka-label
     steps:
       - name: Checkout
-      uses: actions/checkout@v3
+        uses: actions/checkout@v3
+  unit-test:
+    needs: [checkout]
+    runs-on: severyanochka-label
+    steps:
       - name: Run unit tests
-      run: npm run test:unit
+        run: npm run test:unit
   type-check:
-    needs: [test]
+    needs: [unit-test]
     runs-on: severyanochka-label
     steps:
       - name: Run type check
-      run: npm run type-check
+        run: npm run type-check
   deploy:
     needs: [type-check]
     runs-on: severyanochka-label
