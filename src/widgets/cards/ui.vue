@@ -10,7 +10,7 @@ import { type CardsProps } from "./types";
 const { data } = defineProps<CardsProps>();
 const { 
   title = "Не указан",
-  linkListText = "Не указан",
+  listLinkText = "Не указан",
   listLinkHref = "/",
   items,
 } = data;
@@ -21,7 +21,7 @@ const {
   <div class="cards__header">
     <Typography class="header__title title" tagName="h3" bold>{{ title }}</Typography>
     <RouterLink class="header__link link" :to="listLinkHref">
-      <Typography class="link__text" tagName="span" size="s">{{ linkListText }}</Typography>
+      <Typography class="link__text" tagName="span" size="s">{{ listLinkText }}</Typography>
       <div class="link__icon">
         <Icon type="chevron" />
       </div>
