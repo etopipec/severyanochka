@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useSlots } from 'vue';
+import { useSlots, computed } from 'vue';
 import { Typography } from '@/shared/typography';
 
 interface Props {
@@ -7,24 +7,30 @@ interface Props {
   decoration?: 'default' | 'outline' | 'none';
   size?: 'L' | 'M' | 'S';
   disabled?: boolean;
+  count?: number;
 }
 
 const slots = useSlots();
-const props = defineProps<Props>();
-const {
-  color = 'primary',
-  decoration = 'default',
-  size = 'M',
-  disabled = false,
-} = props;
+const props = withDefaults(defineProps<Props>(), {
+  count: 0,
+});
 
-const classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${color}`];
+const classes = computed(() => 
+  [
+    'button', 
+    `size_${props.size || 'M'}`, 
+    `decoration_${props.decoration}`, 
+    `color_${props.color}`,
+  ]);
 </script>
 
 <template>
-  <button :class="classes" :disabled="disabled">
+  <button :class="classes" :disabled="props.disabled">
     <slot name="leftIcon"></slot>
-    <Typography v-if="slots.default" class="button__text" tagName="p" size="s"><slot></slot></Typography>
+    <Typography v-if="slots.default" class="button__text" tagName="p" size="s">
+      <slot v-if="count <= 0"></slot>
+      <span v-else>{{ count }}</span>
+    </Typography>
     <slot name="rightIcon"></slot>
   </button>
 </template>
@@ -37,6 +43,7 @@ const classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: .3s ease-in-out;
 }
 
 .button__text {
@@ -64,5 +71,17 @@ const classes = ['button', `size_${size}`, `decoration_${decoration}`, `color_${
 
 .button.decoration_none:deep(path) {
   fill: var(--main-on-surface);
+}
+
+.button.decoration_outline {
+  background-color: unset;
+}
+
+.button.decoration_outline.color_secondary {
+  border: 1px solid var(--main-secondary);
+}
+
+.button.decoration_outline.color_secondary .button__text {
+  color: var(--main-secondary);
 }
 </style>
