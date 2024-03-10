@@ -4,6 +4,7 @@ interface Card {
   price: number;
   priceWithSale: number;
   count?: number;
+  sale?: number;
 }
 
 export { type Card };

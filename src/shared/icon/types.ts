@@ -9,6 +9,8 @@ type IconType =
   'fb' |
   'ok' |
   'phone' |
-  'login';
+  'login' |
+  'plus' |
+  'minus';
 
 export { type IconType };
