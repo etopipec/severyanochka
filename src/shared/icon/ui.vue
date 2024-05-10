@@ -2,7 +2,7 @@
 import { type IconType } from './types';
 
 interface Props {
-  type: IconType,
+  type: IconType;
 }
 
 const props = defineProps<Props>();

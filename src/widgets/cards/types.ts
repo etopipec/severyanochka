@@ -9,4 +9,4 @@ interface CardsProps {
   };
 }
 
-export { type CardsProps };
+export { type CardsProps, type Card };
