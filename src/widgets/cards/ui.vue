@@ -7,38 +7,33 @@ import { Icon } from "@/shared/icon";
 import { Badge } from "@/shared/badge";
 import { type CardsProps, type Card } from "./types";
 
-const { data } = defineProps<CardsProps>();
+const { info, items } = defineProps<CardsProps>();
 const emit = defineEmits<{
   (e: 'onChangeCard', product: Card): void
 }>();
-const { 
-  title = "Не указан",
-  listLinkText = "Не указан",
-  listLinkHref = "/",
-  items,
-} = data;
 
-const toggleLike = (product: Card) => {
-  const p = {...product};
-  p.isLiked = !p.isLiked;
-  emit('onChangeCard', p);
-};
-
+const toggleLike = (product: Card) => 
+  emit('onChangeCard', {...product, isLiked: !product.isLiked});
 </script>
 
 <template>
 <section class="cards">
   <div class="cards__header">
-    <Typography class="header__title title" tagName="h3" bold>{{ title }}</Typography>
-    <RouterLink class="header__link link" :to="listLinkHref">
-      <Typography class="link__text" tagName="span" size="s">{{ listLinkText }}</Typography>
+    <Typography class="header__title title" tagName="h3" bold>{{ info.title }}</Typography>
+    <RouterLink class="header__link link" :to="info.listLinkHref">
+      <Typography class="link__text" tagName="span" size="s">{{ info.listLinkText }}</Typography>
       <div class="link__icon">
         <Icon type="chevron" />
       </div>
     </RouterLink>
   </div>
   <div class="cards__list">
-    <ProductCard v-for="(product, i) in items" :key="product.name + i" :data="product">
+    <ProductCard
+      v-for="(product, i) in items"
+      :key="product.name + i"
+      :data="product"
+      @onChange="(p) => emit('onChangeCard', p)"
+    >
       <template #headerTopRight>
         <Like :isLiked="product.isLiked" @click="() => toggleLike(product)" />
       </template>
@@ -69,6 +64,9 @@ const toggleLike = (product: Card) => {
 }
 
 .cards__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
   margin-top: 40px;
 }
 </style>

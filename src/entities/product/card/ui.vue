@@ -7,18 +7,14 @@ import { Icon } from "@/shared/icon";
 import { type Card } from "./types";
 
 const props = defineProps<{ data: Card }>();
-const {
-  img,
-  name = "Не указан",
-  price,
-  priceWithSale,
-} = props.data;
+const emit = defineEmits<{
+  (e: 'onChange', product: Card): void
+}>();
 
 const isHovered = ref(false);
-const count = ref(0);
 
-const increaseProduct = () => count.value += 1;
-const decreaseProduct = () => count.value -= 1;
+const changeCount = (c: number) => 
+  emit('onChange', {...props.data, count: (props.data.count || 0) + c});
 </script>
 
 <template>
@@ -35,23 +31,23 @@ const decreaseProduct = () => count.value -= 1;
       <div class="bottom__left">
         <slot name="headerBottomLeft"></slot>
       </div>
-      <img class="product-card__image" :src="img" />
+      <img class="product-card__image" :src="props.data.img" />
     </div>
     <div class="product-card__body">
       <div class="product-card__price">
-        <strong class="price__sale">{{ formatCurrency(priceWithSale) }} ₽</strong>
-        <span class="price__default">{{ formatCurrency(price) }} ₽</span>
+        <strong class="price__sale">{{ formatCurrency(props.data.priceWithSale) }} ₽</strong>
+        <span class="price__default">{{ formatCurrency(props.data.price) }} ₽</span>
         <span class="price__label">С картой</span>
         <span class="price__label">Обычная</span>
       </div>
-      <h5 class="product-card__name">Г/Ц Блинчики с мясом вес, Россия</h5>
+      <h5 class="product-card__name">{{ props.data.name }}</h5>
       <Rating :value="2" />
       <Button
-        v-if="count === 0"
+        v-if="props.data.count === 0"
         :color="isHovered ? 'primary' : 'secondary'"
         :decoration="isHovered ? 'default' : 'outline'"
         :count="props.data.count"
-        @click="increaseProduct"
+        @click="() => changeCount(1)"
       >
         В корзину
       </Button>
@@ -62,13 +58,13 @@ const decreaseProduct = () => count.value -= 1;
         :count="props.data.count"
       >
         <template v-slot:leftIcon>
-          <button class="product-card__btn-count" @click="decreaseProduct">
+          <button class="product-card__btn-count" @click="changeCount(-1)">
             <Icon type="minus"/>
           </button>
         </template>
-        {{ count }}
+        {{ props.data.count }}
         <template v-slot:rightIcon>
-          <button class="product-card__btn-count" @click="increaseProduct">
+          <button class="product-card__btn-count" @click="changeCount(1)">
             <Icon type="plus" />
           </button>
         </template>
