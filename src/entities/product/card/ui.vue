@@ -101,6 +101,10 @@ const changeCount = (c: number) =>
   left: 8px;
 }
 
+.product-card__image {
+  width: 100%;
+}
+
 .product-card__body {
   display: grid;
   grid-gap: 8px;
@@ -148,5 +152,33 @@ const changeCount = (c: number) =>
   border: none;
   padding: 0;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1207px) {
+  .product-card {
+    width: 224px;
+  }
+}
+
+@media screen and (max-width: 767px)  {
+  .product-card {
+    width: 160px;
+  }
+
+  .price__sale {
+    font-size: 14px;
+  }
+
+  .price__default {
+    font-size: 12px;
+  }
+
+  .price__label {
+    font-size: 8px;
+  }
+
+  .product-card__name {
+    font-size: 12px;
+  }
 }
 </style>

@@ -69,4 +69,27 @@ const toggleLike = (product: Card) =>
   gap: 40px;
   margin-top: 40px;
 }
+
+@media screen and (max-width: 1207px) {
+  .cards__list {
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 32px;
+  }
+
+  .cards__list :deep(.product-card:last-child) {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .cards__list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+    margin-top: 24px;
+  }
+
+  .cards__list :deep(.product-card:last-child) {
+    display: unset;
+  }
+}
 </style>

@@ -40,6 +40,7 @@ const classes = computed(() =>
   display: flex;
   align-items: center;
   width: 100%;
+  height: 40px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
