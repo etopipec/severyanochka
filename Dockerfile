@@ -1,11 +1,11 @@
-FROM node:16.18-alpine3.15 as build-stage
+FROM node:20-alpine3.20 as build-stage
 
 WORKDIR /app
 
 RUN apk update \
- && apk add git \
- && git clone https://github.com/vadimkaKharitonenko/severyanochka.git . \
- && git pull
+  && apk add git \
+  && git clone https://github.com/vadimkaKharitonenko/severyanochka.git . \
+  && git pull
 
 COPY package*.json ./
 RUN npm install
