@@ -9,10 +9,8 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <component 
-    :is="props.tagName" 
-    :class="['typography', size ? `size_${size}` : '' , bold ? 'bold' : '', `tag_${tagName}`]"
-  >
+  <component :is="props.tagName"
+    :class="['typography', size ? `size_${size}` : '', bold ? 'bold' : '', `tag_${tagName}`]">
     <slot></slot>
   </component>
 </template>
@@ -24,31 +22,89 @@ const props = defineProps<Props>();
   color: var(--main-on-surface);
 }
 
-.bold { font-weight: 700; }
+.bold {
+  font-weight: 700;
+}
 
-.size_xs { font-size: 12px; }
-.size_s { font-size: 16px; }
-.size_m { font-size: 18px; }
-.size_l { font-size: 24px; }
-.size_xl { font-size: 36px; }
+.size_xs {
+  font-size: 12px;
+}
 
-.tag_h1 { font-size: 64px; }
-.tag_h2 { font-size: 48px; }
-.tag_h3 { font-size: 36px; }
-.tag_h4 { font-size: 24px; }
-.tag_h5 { font-size: 18px; }
+.size_s {
+  font-size: 16px;
+}
+
+.size_m {
+  font-size: 18px;
+}
+
+.size_l {
+  font-size: 24px;
+}
+
+.size_xl {
+  font-size: 36px;
+}
+
+.tag_h1 {
+  font-size: 64px;
+}
+
+.tag_h2 {
+  font-size: 48px;
+}
+
+.tag_h3 {
+  font-size: 36px;
+}
+
+.tag_h4 {
+  font-size: 24px;
+}
+
+.tag_h5 {
+  font-size: 18px;
+}
 
 @media screen and (max-width: 767px) {
-  .size_xs { font-size: 8px; }
-  .size_s { font-size: 12px; }
-  .size_m { font-size: 14px; }
-  .size_l { font-size: 20px; }
-  .size_xl { font-size: 32px; }
+  .size_xs {
+    font-size: 8px;
+  }
 
-  .tag_h1 { font-size: 48px; }
-  .tag_h2 { font-size: 36px; }
-  .tag_h3 { font-size: 24px; }
-  .tag_h4 { font-size: 20px; }
-  .tag_h5 { font-size: 16px; }
+  .size_s {
+    font-size: 12px;
+  }
+
+  .size_m {
+    font-size: 14px;
+  }
+
+  .size_l {
+    font-size: 20px;
+  }
+
+  .size_xl {
+    font-size: 32px;
+  }
+
+  .tag_h1 {
+    font-size: 48px;
+  }
+
+  .tag_h2 {
+    font-size: 36px;
+  }
+
+  .tag_h3 {
+    font-size: 24px;
+  }
+
+  .tag_h4 {
+    font-size: 20px;
+  }
+
+  .tag_h5 {
+    font-size: 16px;
+  }
 }
 </style>

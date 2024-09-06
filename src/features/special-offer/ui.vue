@@ -13,22 +13,11 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <section
-    class="special-offer"
-    :style="`background-image: url(${props.info.background})`"
-    @click="emit('onClick', props.info)"
-  >
-    <Typography
-      class="special-offer__title"
-      tagName="h4"
-      bold
-    >{{ props.info.title }}</Typography>
-    <Typography
-      v-if="props.info.description"
-      class="special-offer__description"
-      tagName="span"
-      size="s"
-    >{{ props.info.description }}</Typography>
+  <section class="special-offer" :style="`background-image: url(${props.info.background})`"
+    @click="emit('onClick', props.info)">
+    <Typography class="special-offer__title" tagName="h4" bold>{{ props.info.title }}</Typography>
+    <Typography v-if="props.info.description" class="special-offer__description" tagName="span" size="s">{{
+      props.info.description }}</Typography>
   </section>
 </template>
 
@@ -57,5 +46,33 @@ const emit = defineEmits<{
 .special-offer__description {
   display: flex;
   width: 50%;
+}
+
+@media screen and (max-width: 1207px) {
+  .special-offer {
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: 52% 28%;
+  }
+
+  .special-offer:deep(.tag_h4) {
+    font-size: 18px;
+  }
+
+  .special-offer:deep(.tag_span) {
+    font-size: 12px;
+  }
+}
+
+
+@media screen and (max-width: 767px) {
+  .special-offer:deep(.tag_h4) {
+    font-size: 20px;
+  }
+
+  .special-offer__title {
+    width: 60%;
+  }
 }
 </style>

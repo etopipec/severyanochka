@@ -15,11 +15,11 @@ const props = withDefaults(defineProps<Props>(), {
   count: 0,
 });
 
-const classes = computed(() => 
+const classes = computed(() =>
   [
-    'button', 
-    `size_${props.size || 'M'}`, 
-    `decoration_${props.decoration}`, 
+    'button',
+    `size_${props.size || 'M'}`,
+    `decoration_${props.decoration}`,
     `color_${props.color}`,
   ]);
 </script>
@@ -51,18 +51,39 @@ const classes = computed(() =>
   text-align: center;
 }
 
+.button.size_S {
+  grid-gap: 8px;
+  padding: 4px 8px;
+}
+
 .button.size_M {
   grid-gap: 8px;
   padding: 8px;
 }
 
-.button.color_secondary { background-color: var(--main-secondary); }
+.button.color_grayscale {
+  background-color: var(--grayscale-lightest);
+}
 
-.button.color_secondary .button__text { color: var(--main-on-secondary); }
+.button.color_grayscale .button__text {
+  color: var(--grayscale-hardest);
+}
 
-.button.color_primary { background: var(--main-primary); }
+.button.color_secondary {
+  background-color: var(--main-secondary);
+}
 
-.button.color_primary .button__text { color: var(--main-on-primary); }
+.button.color_secondary .button__text {
+  color: var(--main-on-secondary);
+}
+
+.button.color_primary {
+  background: var(--main-primary);
+}
+
+.button.color_primary .button__text {
+  color: var(--main-on-primary);
+}
 
 .button.decoration_none {
   background-color: unset;

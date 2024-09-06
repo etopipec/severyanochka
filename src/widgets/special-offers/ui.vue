@@ -18,19 +18,11 @@ const emit = defineEmits<{
 <template>
   <section class="special-offers">
     <div class="special-offers__header">
-      <Typography
-        class="header__title title"
-        tagName="h3"
-        bold
-      >{{ props.info.title }}</Typography>
+      <Typography class="header__title title" tagName="h3" bold>{{ props.info.title }}</Typography>
     </div>
     <div class="special-offers__list">
-      <SpecialOffer
-        v-for="(offer, i) in props.items"
-        :key="offer.title + i"
-        :info="offer"
-        @onClick="(o) => emit('onClickOffer', o)"
-      />
+      <SpecialOffer v-for="(offer, i) in props.items" :key="offer.title + i" :info="offer"
+        @onClick="(o) => emit('onClickOffer', o)" />
     </div>
   </section>
 </template>
@@ -62,6 +54,7 @@ const emit = defineEmits<{
 
 @media screen and (max-width: 767px) {
   .special-offers__list {
+    grid-template-columns: 1fr;
     grid-gap: 16px;
     margin-top: 24px;
   }
