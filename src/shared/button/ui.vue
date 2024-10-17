@@ -3,7 +3,7 @@ import { useSlots, computed } from 'vue';
 import { Typography } from '@/shared/typography';
 
 interface Props {
-  color?: 'primary' | 'secondary' | 'grayscale' | 'error';
+  color?: 'primary' | 'secondary' | 'secondary-2' | 'grayscale' | 'error';
   decoration?: 'default' | 'outline' | 'none';
   size?: 'L' | 'M' | 'S';
   disabled?: boolean;
@@ -44,6 +44,7 @@ const classes = computed(() =>
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  transition: .3s ease-in-out;
 }
 
 .button__text {
@@ -74,6 +75,22 @@ const classes = computed(() =>
 }
 
 .button.color_secondary .button__text {
+  color: var(--main-on-secondary);
+}
+
+.button.color_secondary-2 {
+  background-color: var(--secondary-muted);
+}
+
+.button.color_secondary-2 .button__text {
+  color: var(--main-secondary);
+}
+
+.button.color_secondary-2:hover {
+  background-color: var(--main-secondary);
+}
+
+.button.color_secondary-2:hover .button__text {
   color: var(--main-on-secondary);
 }
 
