@@ -32,7 +32,7 @@ const { info, items } = defineProps<ArticlesProps>();
 .articles__header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .link__icon {
@@ -51,5 +51,19 @@ const { info, items } = defineProps<ArticlesProps>();
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 40px;
   margin-top: 40px;
+}
+
+@media screen and (max-width: 1207px) {
+  .articles__list {
+    grid-gap: 32px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .articles__list {
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+    margin-top: 24px;
+  }
 }
 </style>

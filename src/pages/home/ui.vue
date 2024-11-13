@@ -274,12 +274,6 @@ const onClickShop = (shop: Shop) => {
 <style scoped>
 .section {
   margin: 0 auto;
-  padding: 60px 0;
-}
-
-@media screen and (max-width: 767px) {
-  .sale-cards {
-    margin-top: 40px;
-  }
+  padding: 40px 0;
 }
 </style>
